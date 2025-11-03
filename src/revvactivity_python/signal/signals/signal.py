@@ -47,3 +47,11 @@ class Signal(Generic[T]):
             original_listener = listener
             listener = lambda old_value, new_value: original_listener(new_value)
         list_of_listeners.append(listener)
+    
+    def bind_value_from(self, from_signal: "Signal[T_extends]") -> None:
+        from_signal.on_change(lambda n: self._set_value(n))
+        self._set_value(from_signal.get_value())
+    
+    def bind_value_to(self, to_signal: "Signal[T_super]") -> None:
+        self.on_change(lambda n: to_signal._set_value(n))
+        to_signal._set_value(self.get_value())
