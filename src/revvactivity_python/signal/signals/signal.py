@@ -15,7 +15,12 @@ class Signal(Generic[T]):
         self.__value: T | None = value
         self.__update_listeners: list[SignalChangeListener[T_super]] = []
         self.__change_listeners: list[SignalChangeListener[T_super]] = []
-    
+
+    def __eq__(self, other):
+        if not isinstance(other, Signal):
+            return False
+        return self.__value == other.__value
+
     def get_value(self) -> T | None:
         return self.__value
     
