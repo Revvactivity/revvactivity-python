@@ -16,10 +16,10 @@ class SvelteTest(JavaScriptFrameworkTest):
         return Svelte
 
     def _get_state_function(self) -> Callable[[T], WriteSignal[T]]:
-        return Svelte.use_state
+        return Svelte.state
 
     def _get_derived_function(self) -> Callable[[SignalDerived[T]], Signal[T]]:
-        return Svelte.use_memo
+        return Svelte.derived
 
     def _get_effect_function(self) -> Callable[[SignalEffect], None]:
-        return Svelte.use_effect
+        return Svelte.effect
