@@ -1,5 +1,5 @@
 import unittest
-from typing import Any, Callable, Type, TypeVar
+from typing import Callable, Type, TypeVar
 
 from revvactivity_python.javascript.javascript_framework import JavaScriptFramework
 from revvactivity_python.signal.functions.signal_derived import SignalDerived
