@@ -1,0 +1,1 @@
+PYTHONPATH=src py -m unittest discover -s tests -p "*.py" -t .
