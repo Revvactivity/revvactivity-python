@@ -20,6 +20,9 @@ class Signal(Generic[T]):
         if not isinstance(other, Signal):
             return False
         return self.__value == other.__value
+    
+    def __call__(self) -> T | None:
+        return self.get_value()
 
     def get_value(self) -> T | None:
         return self.__value
