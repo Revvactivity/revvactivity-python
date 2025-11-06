@@ -8,6 +8,3 @@ T = TypeVar("T")
 class SignalDerived(Generic[T], SignalFunction, Protocol[T]):
     def __call__(self) -> T:
         ...
-    
-    def get(self) -> T:
-        return self()
