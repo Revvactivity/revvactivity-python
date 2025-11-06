@@ -8,6 +8,3 @@ T = TypeVar("T")
 class SignalChangeListener(SignalListener[T], Protocol[T]):
     def __call__(self, old_value: T, new_value: T) -> None:
         ...
-    
-    def on_change(self, old_value: T, new_value: T) -> None:
-        return self()
