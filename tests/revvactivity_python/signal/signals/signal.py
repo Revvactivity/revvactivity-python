@@ -32,6 +32,12 @@ class SignalTest(unittest.TestCase):
 
         self.assertNotEqual(signal_1, signal_2)
 
+    def test_eq_false_no_signal(self) -> None:
+        signal_1 = self._get_signal(self._first_value)
+        signal_2 = {}
+
+        self.assertNotEqual(signal_1, signal_2)
+
     def test_call(self) -> None:
         self.assertEqual(self._first_signal(), self._first_value)
     
