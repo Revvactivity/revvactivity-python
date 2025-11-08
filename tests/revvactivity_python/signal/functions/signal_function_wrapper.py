@@ -9,6 +9,7 @@ class SignalFunctionWrapperTest(unittest.TestCase):
     def setUp(self):
         self._signal_1 = WriteSignal()
         self._signal_2 = WriteSignal()
+        self._signal_3 = WriteSignal()
         self._update_listener = Mock()
 
         self._signal_function = lambda: self._signal_1() + "" + self._signal_2()
@@ -23,6 +24,9 @@ class SignalFunctionWrapperTest(unittest.TestCase):
 
         signal_2_value = "Bar"
         self._signal_2.set_value(signal_2_value)
+
+        signal_3_value = "Baz"
+        self._signal_3.set_value(signal_3_value)
         
         self._update_listener.assert_has_calls(
             [
