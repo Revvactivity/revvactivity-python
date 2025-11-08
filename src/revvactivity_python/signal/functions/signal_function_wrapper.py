@@ -19,4 +19,13 @@ class SignalFunctionWrapper:
         ]
         closures = [cell.cell_contents for cell in signal_function.__closure__] if signal_function.__closure__ else []
         all_vars = globals + closures
-        return [item for item in all_vars if isinstance(item, Signal)]
+
+        signals = []
+        for item in all_vars:
+            if isinstance(item, Signal):
+                signals.append(item)
+            elif hasattr(item, "__dict__"):
+                for attr in item.__dict__.values():
+                    if isinstance(attr, Signal):
+                        signals.append(attr)
+        return signals
