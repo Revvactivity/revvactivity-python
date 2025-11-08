@@ -12,9 +12,11 @@ class SignalFunctionWrapper:
             signal.on_update(update_listener)
     
     def __get_signals(self, signal_function: SignalFunction) -> list[Signal[Any]]:
+        names = signal_function.__code__.co_names
+
         globals = [
             signal_function.__globals__[name]
-            for name in signal_function.__code__.co_names
+            for name in names
             if name in signal_function.__globals__
         ]
         closures = [cell.cell_contents for cell in signal_function.__closure__] if signal_function.__closure__ else []
@@ -25,7 +27,7 @@ class SignalFunctionWrapper:
             if isinstance(item, Signal):
                 signals.append(item)
             elif hasattr(item, "__dict__"):
-                for attr in item.__dict__.values():
-                    if isinstance(attr, Signal):
+                for name, attr in item.__dict__.items():
+                    if name in names and isinstance(attr, Signal):
                         signals.append(attr)
         return signals
