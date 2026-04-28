@@ -1,1 +1,2 @@
 PYTHONPATH=src coverage run -m unittest discover -s tests -p "*.py" -t .
+coverage report
