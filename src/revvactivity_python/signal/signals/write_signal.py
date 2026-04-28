@@ -14,3 +14,9 @@ class WriteSignal(Signal[T]):
     
     def update_value(self, update_function: Callable[[T | None], T | None]) -> None:
         self.set_value(update_function(self.get_value()))
+    
+    def change_value(self, change_function: Callable[[T | None], T | None]) -> None:
+        old_value = self.get_value()
+        new_value = change_function(old_value)
+        if new_value != old_value:
+            self.set_value(new_value)
